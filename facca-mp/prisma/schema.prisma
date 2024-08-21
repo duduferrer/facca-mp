@@ -14,36 +14,89 @@ datasource db {
 }
 
 model Category {
-  id String @id @unique @default(uuid())
-  name String
-  slug String
+  id       String    @id @unique @default(uuid())
+  name     String
+  slug     String
   imageURL String?
-  product Product[]
+  product  Product[]
 }
 
 model Product {
-  id String @id @unique @default(uuid())
-  categoryID String
-  category Category @relation(fields: [categoryID], references: [id])
-  slug String
-  price Decimal @db.Decimal(6,2)
-  imageURL String?
+  id           String         @id @unique @default(uuid())
+  categoryID   String
+  category     Category       @relation(fields: [categoryID], references: [id])
+  slug         String
+  price        Decimal        @db.Decimal(6, 2)
+  imageURL     String?
   productOrder ProductOrder[]
 }
 
-model Order{
-  id String @id @unique @default(uuid())
-  timeStamp DateTime @updatedAt
-  userID String
+model Order {
+  id           String         @id @unique @default(uuid())
+  timeStamp    DateTime       @updatedAt
+  userID       String
+  user         User           @relation(fields: [userID], references: [id])
   productOrder ProductOrder[]
 }
 
-model ProductOrder{
-  id String @id @unique @default(uuid())
-  orderID String
-  order Order @relation(fields: [orderID], references: [id])
+model ProductOrder {
+  id        String  @id @unique @default(uuid())
+  orderID   String
+  order     Order   @relation(fields: [orderID], references: [id])
   productID String
-  product Product @relation(fields: [productID], references: [id])
-  price Decimal @db.Decimal(6,2)
-  quantity Float
+  product   Product @relation(fields: [productID], references: [id])
+  price     Decimal @db.Decimal(6, 2)
+  quantity  Float
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  order         Order[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
 }

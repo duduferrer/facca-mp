@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  .dark {
     /* Name: custom color palette
        Author: Ilias Ism
        URL: https://gradient.page */
 
     /* CSS: .bg-gradient { background: var(--gradient) } */
-    --gradient: linear-gradient(to top left,#00d2ff,#3a7bd5);
+    --gradient: linear-gradient(to top left, #00d2ff, #3a7bd5);
 
     --background: 203 65% 4%;
     --foreground: 203 10% 97.5%;
@@ -41,13 +41,13 @@
     --ring: 203 100% 50%;
   }
 
-  .dark {
+  .light {
     /* Name: custom color palette
        Author: Ilias Ism
        URL: https://gradient.page */
 
     /* CSS: .bg-gradient { background: var(--gradient) } */
-    --gradient: linear-gradient(to top left,#091E3A,#2F80ED,#2D9EE0);
+    --gradient: linear-gradient(to top left, #091e3a, #2f80ed, #2d9ee0);
     --background: 228 98.65% 98.26%;
     --foreground: 228 7.3% 0.52%;
 
@@ -79,7 +79,6 @@
 
     --radius: 0.5rem;
   }
-
 }
 
 @layer base {
@@ -89,7 +88,7 @@
   body {
     @apply bg-background text-foreground h-full;
   }
-  html{
+  html {
     @apply h-full;
   }
 }

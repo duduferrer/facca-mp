@@ -14,7 +14,7 @@ const CategoryCard = ({ category }: CategoryItem) => {
   };
   return (
     <Link href={category.slug}>
-      <Card className="w-36">
+      <Card className="w-36 hover:bg-accent/100 hover:text-accent-foreground">
         <CardContent className="font-semibold flex justify-center p-4 gap-3">
           {categoryIcon[category.slug as keyof typeof categoryIcon]}
           {category.name}

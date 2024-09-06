@@ -13,6 +13,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role{
+  ADMIN
+  USER
+  MASTER
+}
+
 model Category {
   id       String    @id @unique @default(uuid())
   name     String
@@ -28,6 +34,9 @@ model Product {
   slug         String
   price        Decimal        @db.Decimal(6, 2)
   imageURL     String?
+  barcode      String?
+  name         String
+  stock Int @db.SmallInt @default(0)
   productOrder ProductOrder[]
 }
 
@@ -88,6 +97,10 @@ model User {
   accounts      Account[]
   sessions      Session[]
   order         Order[]
+  role Role @default(USER)
+  member  Boolean @default(false)
+  balance Decimal @db.Decimal(6,2) @default(0)
+
 
   @@map("users")
 }

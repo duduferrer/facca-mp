@@ -1,0 +1,7 @@
+-- CreateEnum
+CREATE TYPE "Role" AS ENUM ('ADMIN', 'USER', 'MASTER');
+
+-- AlterTable
+ALTER TABLE "users" ADD COLUMN     "balance" DECIMAL(6,2) NOT NULL DEFAULT 0,
+ADD COLUMN     "member" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "role" "Role" NOT NULL DEFAULT 'USER';

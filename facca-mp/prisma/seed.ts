@@ -16,7 +16,8 @@ async function main() {
       {
         name: "Coca Cola",
         slug: "coca-cola",
-        price: 2,
+        sellPrice: 2,
+        buyPrice: 1,
         barcode: "78912939",
         imageURL: "https://cdn-cosmos.bluesoft.com.br/products/78912939",
         categoryID: beverageCategory.id,
@@ -24,7 +25,8 @@ async function main() {
       {
         name: "Pepsi",
         slug: "pepsi",
-        price: 2.5,
+        sellPrice: 2.5,
+        buyPrice: 2,
         barcode: "7892840800567",
         imageURL:
           "https://cdn-https://cdn-cosmos.bluesoft.com.br/products/7892840800567",
@@ -33,7 +35,8 @@ async function main() {
       {
         name: "Soda Antartica 200ml",
         slug: "soda",
-        price: 3.45,
+        sellPrice: 3.45,
+        buyPrice: 1.5,
         barcode: "7891991014984",
         imageURL: "https://cdn-cosmos.bluesoft.com.br/products/7891991014984",
         categoryID: beverageCategory.id,
@@ -54,7 +57,8 @@ async function main() {
       {
         name: "Cheetos Requeijão",
         slug: "cheetos-requeijao",
-        price: 5.75,
+        sellPrice: 5.75,
+        buyPrice: 7,
         barcode: "7892840215941",
         imageURL: "https://cdn-cosmos.bluesoft.com.br/products/7892840215941",
         categoryID: snacksCategory.id,
@@ -62,7 +66,8 @@ async function main() {
       {
         name: "SALGADINHO FANDANGOS QUEIJO",
         slug: "fandangos-queijo",
-        price: 12.29,
+        sellPrice: 12.29,
+        buyPrice: 10,
         barcode: "7892840222949",
         imageURL: "https://cdn-cosmos.bluesoft.com.br/products/7892840222949",
         categoryID: snacksCategory.id,
@@ -70,7 +75,8 @@ async function main() {
       {
         name: "SALGADINHO DE TRIGO BACON ELMA CHIPS PINGO DOURO CLÁSSICOS PACOTE 130G",
         slug: "pingo-douro",
-        price: 5.2,
+        sellPrice: 5.2,
+        buyPrice: 5,
         barcode: "7892840814793",
         imageURL: "https://cdn-cosmos.bluesoft.com.br/products/7892840814793",
         categoryID: snacksCategory.id,
@@ -91,7 +97,8 @@ async function main() {
       {
         name: "CONFEITO M&M'S AMENDOIM",
         slug: "mms",
-        price: 5.75,
+        sellPrice: 5.75,
+        buyPrice: 3,
         barcode: "7896423413878",
         imageURL: "https://cdn-cosmos.bluesoft.com.br/products/7896423413878",
         categoryID: candyCategory.id,
@@ -99,7 +106,8 @@ async function main() {
       {
         name: "CHOCOLATE BRANCO COOKIES & CREAM ARCOR PACOTE 80G",
         slug: "choc-branco",
-        price: 5.07,
+        sellPrice: 5.07,
+        buyPrice: 5.07,
         barcode: "7898142863958",
         imageURL: "https://cdn-cosmos.bluesoft.com.br/products/7898142863958",
         categoryID: candyCategory.id,
@@ -107,7 +115,8 @@ async function main() {
       {
         name: "CHOCOLATE BRANCO GAROTO BATON 16G",
         slug: "baton",
-        price: 0.95,
+        sellPrice: 0.95,
+        buyPrice: 0.25,
         barcode: "78912366",
         imageURL: "https://cdn-cosmos.bluesoft.com.br/products/78912366",
         categoryID: candyCategory.id,

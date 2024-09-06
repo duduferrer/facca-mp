@@ -32,7 +32,8 @@ model Product {
   categoryID   String
   category     Category       @relation(fields: [categoryID], references: [id])
   slug         String
-  price        Decimal        @db.Decimal(6, 2)
+  sellPrice        Decimal        @db.Decimal(6, 2)
+  buyPrice    Decimal @db.Decimal(6,2)
   imageURL     String?
   barcode      String?
   name         String

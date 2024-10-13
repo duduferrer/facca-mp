@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Product } from "@prisma/client";
 import Image from "next/image";
+import { BRL } from "../../utils/convertAsCurrency";
 
 interface ProductCardProps {
   product: Product;
@@ -27,7 +28,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <p className="text-xs max-w-36 text-nowrap text-ellipsis overflow-hidden">
             {product.name}
           </p>
-          <p>R$ {product.sellPrice.toString()} </p>
+          <p>{BRL.format(Number(product.sellPrice))}</p>
         </div>
       </CardContent>
     </Card>

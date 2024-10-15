@@ -22,7 +22,6 @@ const MenuContent = () => {
   }, []);
   useEffect(() => {
     isChecked ? setTheme("dark") : setTheme("light");
-    console.log(isChecked);
     localStorage.setItem("theme-isChecked", isChecked.toString());
   }, [isChecked]);
 

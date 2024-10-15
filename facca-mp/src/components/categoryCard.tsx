@@ -13,10 +13,12 @@ const CategoryCard = ({ category }: CategoryItem) => {
     salgados: <SandwichIcon width={20} />,
   };
   return (
-    <Link href={category.slug}>
+    <Link href={"/category/" + category.slug}>
       <Card className="w-36 hover:bg-accent/100 hover:text-accent-foreground">
         <CardContent className="font-semibold flex justify-center p-4 gap-3">
-          {categoryIcon[category.slug as keyof typeof categoryIcon]}
+          {categoryIcon[category.slug as keyof typeof categoryIcon]
+            ? categoryIcon[category.slug as keyof typeof categoryIcon]
+            : ""}
           {category.name}
         </CardContent>
       </Card>

@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Product } from "@prisma/client";
 import Image from "next/image";
-import { BRL } from "../../utils/convertAsCurrency";
+import { BRL } from "../app/utils/convertAsCurrency";
 
 interface ProductCardProps {
   product: Product;

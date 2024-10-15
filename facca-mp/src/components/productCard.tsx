@@ -6,7 +6,7 @@ import { BRL } from "../app/utils/convertAsCurrency";
 import { CartContext } from "@/app/providers/cartProvider";
 import { useContext, useState } from "react";
 import { Button } from "./ui/button";
-import { MinusSquareIcon, PlusSquareIcon } from "lucide-react";
+import { MinusSquareIcon, PlusSquareIcon, Trash2Icon } from "lucide-react";
 
 interface ProductCardProps {
   product: Product;
@@ -29,7 +29,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
   return (
     <Card
-      className="p-2 w-48 h-50 hover:bg-accent/100 hover:text-accent-foreground cursor-pointer"
+      className="p-2 min-w-40 max-w-40 h-50 hover:bg-accent/100 hover:text-accent-foreground cursor-pointer"
       onClick={handleCardClick}
     >
       <CardContent className="p-2">
@@ -60,7 +60,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
           ) : (
             <div className="flex justify-center p-2">
               <Button size="icon" variant="ghost" onClick={handleMinusClick}>
-                <MinusSquareIcon />
+                {quantity == 1 ? (
+                  <Trash2Icon className="text-destructive" />
+                ) : (
+                  <MinusSquareIcon />
+                )}
               </Button>
               <Button size="icon" variant="outline" className="font-bold">
                 {quantity}

@@ -5,6 +5,7 @@ import { Card } from "./ui/card";
 import { Sheet, SheetTrigger } from "./ui/sheet";
 import MenuContent from "./menuContent";
 import Link from "next/link";
+import Cart from "./cart";
 
 const Header = () => {
   return (
@@ -20,9 +21,14 @@ const Header = () => {
       <Link href={"/"}>
         <h1 className="font-black text-2xl"> FACCA </h1>
       </Link>
-      <Button size={"icon"} className="rounded" variant={"ghost"}>
-        <ShoppingBasketIcon />
-      </Button>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button size={"icon"} className="rounded" variant={"ghost"}>
+            <ShoppingBasketIcon />
+          </Button>
+        </SheetTrigger>
+        <Cart />
+      </Sheet>
     </Card>
   );
 };

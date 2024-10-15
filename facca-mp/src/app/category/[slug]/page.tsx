@@ -22,7 +22,7 @@ const CategoriesPage = async ({ params: { slug } }: CategoriesPageProps) => {
       <div className="px-4">
         <SearchBar />
         <Categories />
-        <div className="mt-6 bg-accent p-3 max-w-full block">
+        <div className="mt-6 p-3 max-w-full block">
           <h3 className="text-center font-bold mb-2">{category?.name}</h3>
           <div className="flex justify-center">
             <Products products={await productsFiltered(slug)} />

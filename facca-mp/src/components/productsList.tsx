@@ -1,4 +1,3 @@
-import { db } from "@/lib/prisma";
 import ProductCard from "./productCard";
 import { Product } from "@prisma/client";
 

@@ -4,29 +4,18 @@ import { Product } from "@prisma/client";
 import Image from "next/image";
 import { BRL } from "../app/utils/convertAsCurrency";
 import { CartContext } from "@/app/providers/cartProvider";
-import { useContext, useState } from "react";
-import { Button } from "./ui/button";
-import { MinusSquareIcon, PlusSquareIcon, Trash2Icon } from "lucide-react";
+import { useContext } from "react";
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const [quantity, setQuantity] = useState(0);
-  const { addItemToCart } = useContext(CartContext);
+  const { increaseQuantity } = useContext(CartContext);
   const handleCardClick = () => {
-    if (quantity == 0) {
-      addItemToCart({ ...product, quantity });
-      setQuantity(1);
-    }
+    increaseQuantity({ ...product });
   };
-  const handleMinusClick = () => {
-    setQuantity(quantity - 1);
-  };
-  const handlePlusClick = () => {
-    setQuantity(quantity + 1);
-  };
+
   return (
     <Card
       className="p-2 min-w-40 max-w-40 h-50 hover:bg-accent/100 hover:text-accent-foreground cursor-pointer"
@@ -55,25 +44,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
               {BRL.format(Number(product.sellPrice))}
             </p>
           </div>
-          {quantity == 0 ? (
-            ""
-          ) : (
-            <div className="flex justify-center p-2">
-              <Button size="icon" variant="ghost" onClick={handleMinusClick}>
-                {quantity == 1 ? (
-                  <Trash2Icon className="text-destructive" />
-                ) : (
-                  <MinusSquareIcon />
-                )}
-              </Button>
-              <Button size="icon" variant="outline" className="font-bold">
-                {quantity}
-              </Button>
-              <Button size="icon" variant="ghost" onClick={handlePlusClick}>
-                <PlusSquareIcon />
-              </Button>
-            </div>
-          )}
         </div>
       </CardContent>
     </Card>

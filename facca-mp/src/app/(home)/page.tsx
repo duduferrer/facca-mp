@@ -1,6 +1,6 @@
 import Categories from "../../components/categories";
 import Products from "../../components/productsList";
-import productsFiltered from "../../components/filterProducts";
+import productsFiltered from "../utils/filterProducts";
 import SearchBar from "@/components/searchBar";
 import { CategoryType } from "../utils/enumCategories";
 
@@ -21,6 +21,5 @@ export default async function Home() {
       </div>
     </>
   );
-  // TODO Estilizar Card de Produto
   //TODO adicionar categoria de favoritos
 }

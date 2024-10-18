@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import AuthProvider from "./providers/authProvider";
 import { ThemeProvider } from "./providers/themeProvider";
+import CartProvider from "./providers/cartProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,8 +23,10 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" enableSystem>
           <AuthProvider>
-            <Header />
-            {children}
+            <CartProvider>
+              <Header />
+              {children}
+            </CartProvider>
           </AuthProvider>
         </ThemeProvider>
       </body>

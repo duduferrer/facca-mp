@@ -14,7 +14,7 @@ const CartCard = ({ product }: Product) => {
     <Card className="w-160 h-40 border-none mt-4">
       <CardContent className="p-0 flex">
         <div className="h-40 w-64 flex">
-          <div className="ml-5 mt-8 size-fit">
+          <div className="ml-5 mt-8 w-14">
             <Image
               src={
                 product.imageURL
@@ -24,7 +24,7 @@ const CartCard = ({ product }: Product) => {
               alt={product.name}
               width={100}
               height={100}
-              className="border-solid size-24 align-middle"
+              className="border-solid align-middle size-24"
             />
           </div>
           <Separator orientation="vertical" className="h-28 mt-6 mx-3" />

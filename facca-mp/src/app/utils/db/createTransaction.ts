@@ -3,20 +3,11 @@ import { CartProduct } from "@/app/providers/cartProvider";
 import { db } from "@/lib/prisma";
 import { Order } from "@prisma/client";
 
-export const addOrderToDB = async (
-  products: CartProduct[],
-  userEmail: string
-) => {
+export const addOrderToDB = async (products: CartProduct[], userID: string) => {
   try {
-    const user = await db.user.findUnique({
-      where: {
-        email: userEmail,
-      },
-    });
-
     const order: Order = await db.order.create({
       data: {
-        userID: user!.id,
+        userID: userID,
       },
     });
     let totalPrice = 0;
@@ -40,7 +31,7 @@ export const addOrderToDB = async (
             totalPrice + dbProduct.sellPrice.toNumber() * product.quantity;
           await db.user.update({
             where: {
-              id: user?.id,
+              id: userID,
             },
             data: {
               balance: {

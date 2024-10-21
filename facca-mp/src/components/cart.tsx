@@ -29,7 +29,6 @@ const Cart = () => {
 
   useEffect(() => {
     let sum = 0;
-
     products
       .map((product) => {
         sum = Number(product.sellPrice) * product.quantity + sum;
@@ -78,11 +77,11 @@ const Cart = () => {
   };
 
   const handleBuyClick = async () => {
-    if (!session?.user?.email) {
+    if (!session?.user.id) {
       askLogin();
     } else {
       if (products.length > 0) {
-        const orderPlaced = await addOrderToDB(products, session.user.email);
+        const orderPlaced = await addOrderToDB(products, session.user.id);
         orderPlaced ? orderSuccess() : orderFail();
       } else {
         toast({

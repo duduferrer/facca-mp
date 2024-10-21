@@ -15,9 +15,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
+import { addOrderToDB } from "@/app/utils/db/createTransaction";
+import { useSession } from "next-auth/react";
 
 const Cart = () => {
   const { products, setProducts } = useContext(CartContext);
+  const { status, data: session } = useSession();
   const [subtotal, setSubtotal] = useState(0);
   const desconto = 3.2;
   useEffect(() => {
@@ -32,10 +35,19 @@ const Cart = () => {
     setSubtotal(sum);
   }, [products]);
 
+  const askLogin = () => {
+    console.log("LOGIN");
+  };
   const handleDeleteCartClick = () => {
     setProducts([]);
   };
-  const handleBuyClick = async () => {};
+  const handleBuyClick = async () => {
+    if (!session?.user?.email) {
+      askLogin();
+    } else {
+      addOrderToDB(products, session.user.email);
+    }
+  };
   return (
     <SheetContent side={"right"} className="overflow-auto">
       <div className="flex">

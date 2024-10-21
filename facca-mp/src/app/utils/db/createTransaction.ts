@@ -1,0 +1,45 @@
+"use server";
+import { CartProduct } from "@/app/providers/cartProvider";
+import { db } from "@/lib/prisma";
+import { Order } from "@prisma/client";
+
+export const addOrderToDB = async (
+  products: CartProduct[],
+  userEmail: string
+) => {
+  try {
+    const user = await db.user.findUnique({
+      where: {
+        email: userEmail,
+      },
+    });
+
+    const order: Order = await db.order.create({
+      data: {
+        userID: user!.id,
+      },
+    });
+
+    await Promise.all(
+      products.map(async (product: CartProduct) => {
+        const dbProduct = await db.product.findUnique({
+          where: {
+            id: product.id,
+          },
+        });
+        if (dbProduct != null) {
+          await db.productOrder.create({
+            data: {
+              orderID: order.id,
+              productID: product.id,
+              price: dbProduct.sellPrice,
+              quantity: product.quantity,
+            },
+          });
+        }
+      })
+    );
+  } catch (error) {
+    console.error("Error placing order:", error);
+  }
+};

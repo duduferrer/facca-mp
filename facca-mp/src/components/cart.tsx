@@ -1,14 +1,24 @@
 import { useContext, useEffect, useState } from "react";
 import { SheetContent } from "./ui/sheet";
 import { CartContext } from "@/app/providers/cartProvider";
-import { ShoppingBagIcon, ShoppingCart, ShoppingCartIcon } from "lucide-react";
+import { ShoppingCart, ShoppingCartIcon } from "lucide-react";
 import CartCard from "./cartCard";
 import { BRL } from "@/app/utils/convertAsCurrency";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "./ui/alert-dialog";
+import { checkPrice } from "@/app/utils/db/checkPrice";
 
 const Cart = () => {
-  const { products } = useContext(CartContext);
+  const { products, setProducts } = useContext(CartContext);
   const [subtotal, setSubtotal] = useState(0);
   const desconto = 3.2;
   useEffect(() => {
@@ -22,6 +32,13 @@ const Cart = () => {
       .forEach((el) => el + sum);
     setSubtotal(sum);
   }, [products]);
+
+  const handleDeleteCartClick = () => {
+    setProducts([]);
+  };
+  const handleBuyClick = async () => {
+    await checkPrice();
+  };
   return (
     <SheetContent side={"right"} className="overflow-auto">
       <div className="flex">
@@ -64,12 +81,38 @@ const Cart = () => {
                 </div>
               </div>
               <div className="flex py-3">
-                <Button className="gap-3 mt-5 w-3/4 font-bold text-xl h-12 mx-auto">
+                <Button
+                  className="gap-3 mt-5 w-3/4 font-bold text-xl h-12 mx-auto"
+                  onClick={handleBuyClick}
+                >
                   <ShoppingCartIcon />
                   Comprar
                 </Button>
               </div>
             </Card>
+            <div className="py-4">
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    className="mx-auto flex w-3/4 bg-destructive"
+                    variant={"outline"}
+                  >
+                    Limpar Carrinho
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogTitle>Limpar o Carrinho</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Tem certeza que deseja limpar o carrinho? Essa ação não pode
+                    ser desfeita.
+                  </AlertDialogDescription>
+                  <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleDeleteCartClick}>
+                    Continuar
+                  </AlertDialogAction>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
           </>
         )}
       </div>

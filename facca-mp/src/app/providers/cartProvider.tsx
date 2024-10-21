@@ -1,7 +1,7 @@
 "use client";
 
 import { Product } from "@prisma/client";
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 export interface CartProduct extends Product {
   quantity: number;
@@ -12,6 +12,7 @@ interface ICartContext {
   totalPrice: number;
   increaseQuantity: (product: Product) => void;
   decreaseQuantity: (product: Product) => void;
+  setProducts: (products: CartProduct[]) => void;
 }
 
 export const CartContext = createContext<ICartContext>({
@@ -19,20 +20,30 @@ export const CartContext = createContext<ICartContext>({
   totalPrice: 0,
   increaseQuantity: () => {},
   decreaseQuantity: () => {},
+  setProducts: () => {},
 });
 
 const CartProvider = ({ children }: { children: ReactNode }) => {
+  const sessionStorageCart = JSON.parse(
+    sessionStorage.getItem("@facca/cart-products") || "[]"
+  );
   const [products, setProducts] = useState<CartProduct[]>([]);
+
+  useEffect(() => {
+    setProducts(sessionStorageCart);
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem("@facca/cart-products", JSON.stringify(products));
+  }, [products]);
 
   const addProductToCart = (product: Product) => {
     setProducts((prev) => [...prev, { ...product, quantity: 1 }]);
-    console.log(products);
   };
 
   const increaseQuantity = (product: Product) => {
     const productInCart = products.some((item) => item.id == product.id);
     if (productInCart) {
-      console.log(products);
       setProducts(
         products.map((el) =>
           el.id == product.id ? { ...el, quantity: el.quantity + 1 } : el
@@ -41,7 +52,6 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     } else {
       addProductToCart(product);
     }
-    debugger;
   };
   const decreaseQuantity = (product: Product) => {
     setProducts((prev) =>
@@ -67,6 +77,7 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
         totalPrice: 0,
         increaseQuantity,
         decreaseQuantity,
+        setProducts,
       }}
     >
       {children}

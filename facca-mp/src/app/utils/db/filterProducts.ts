@@ -1,4 +1,4 @@
-import { CategoryType } from "@/app/utils/enumCategories";
+import CategoryType from "@/app/utils/enumCategories";
 import { db } from "@/lib/prisma";
 /**
  * Returns product list filtered by category
@@ -7,7 +7,7 @@ import { db } from "@/lib/prisma";
  */
 
 const productsFiltered = async (category: CategoryType) => {
-  if (category == CategoryType.all) {
+  if (category == "all") {
     const products = await db.product.findMany({});
     return products;
   } else {

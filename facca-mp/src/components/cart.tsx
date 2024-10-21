@@ -15,7 +15,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
-import { checkPrice } from "@/app/utils/db/checkPrice";
 
 const Cart = () => {
   const { products, setProducts } = useContext(CartContext);
@@ -36,9 +35,7 @@ const Cart = () => {
   const handleDeleteCartClick = () => {
     setProducts([]);
   };
-  const handleBuyClick = async () => {
-    await checkPrice();
-  };
+  const handleBuyClick = async () => {};
   return (
     <SheetContent side={"right"} className="overflow-auto">
       <div className="flex">

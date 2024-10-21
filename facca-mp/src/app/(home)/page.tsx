@@ -1,10 +1,10 @@
 import Categories from "../../components/categories";
 import Products from "../../components/productsList";
 import SearchBar from "@/components/searchBar";
-import allProducts from "../utils/db/getAllProducts";
+import { getAllProducts } from "../utils/db/getProducts";
 
 export default async function Home() {
-  const products = await allProducts();
+  const products = await getAllProducts();
   return (
     <>
       <div className="px-4">

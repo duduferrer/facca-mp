@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import AuthProvider from "./providers/authProvider";
 import { ThemeProvider } from "./providers/themeProvider";
 import CartProvider from "./providers/cartProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" enableSystem>
           <AuthProvider>
             <CartProvider>
+              <Toaster />
               <Header />
               {children}
             </CartProvider>

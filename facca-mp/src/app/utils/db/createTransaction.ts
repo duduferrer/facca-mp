@@ -19,7 +19,7 @@ export const addOrderToDB = async (
         userID: user!.id,
       },
     });
-
+    let totalPrice = 0;
     await Promise.all(
       products.map(async (product: CartProduct) => {
         const dbProduct = await db.product.findUnique({
@@ -36,10 +36,24 @@ export const addOrderToDB = async (
               quantity: product.quantity,
             },
           });
+          totalPrice =
+            totalPrice + dbProduct.sellPrice.toNumber() * product.quantity;
+          await db.user.update({
+            where: {
+              id: user?.id,
+            },
+            data: {
+              balance: {
+                decrement: totalPrice,
+              },
+            },
+          });
         }
       })
     );
+    return true;
   } catch (error) {
     console.error("Error placing order:", error);
+    return false;
   }
 };

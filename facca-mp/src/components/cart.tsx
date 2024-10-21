@@ -16,13 +16,17 @@ import {
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
 import { addOrderToDB } from "@/app/utils/db/createTransaction";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@radix-ui/react-toast";
 
 const Cart = () => {
+  const { toast } = useToast();
   const { products, setProducts } = useContext(CartContext);
   const { status, data: session } = useSession();
   const [subtotal, setSubtotal] = useState(0);
   const desconto = 3.2;
+
   useEffect(() => {
     let sum = 0;
 
@@ -35,17 +39,58 @@ const Cart = () => {
     setSubtotal(sum);
   }, [products]);
 
+  const handleLoginClick = async () => {
+    await signIn();
+  };
   const askLogin = () => {
-    console.log("LOGIN");
+    toast({
+      variant: "destructive",
+      title: "Não foi possível realizar a compra",
+      description: "É necessário estar logado para realizar uma compra.",
+      action: (
+        <Button variant={"ghost"} className="border-2">
+          <ToastAction onClick={handleLoginClick} altText="Faça Login">
+            Fazer Login
+          </ToastAction>
+        </Button>
+      ),
+    });
   };
   const handleDeleteCartClick = () => {
     setProducts([]);
   };
+
+  const orderSuccess = () => {
+    toast({
+      variant: "default",
+      title: "Compra Realizada!",
+      description:
+        "Compra realizada com sucesso, caso deseje, confira no seu perfil.",
+    });
+    setProducts([]);
+  };
+  const orderFail = () => {
+    toast({
+      variant: "destructive",
+      title: "Não foi possível realizar a compra",
+      description: "Houve um erro ao finalizar a compra. Tente novamente.",
+    });
+  };
+
   const handleBuyClick = async () => {
     if (!session?.user?.email) {
       askLogin();
     } else {
-      addOrderToDB(products, session.user.email);
+      if (products.length > 0) {
+        const orderPlaced = await addOrderToDB(products, session.user.email);
+        orderPlaced ? orderSuccess() : orderFail();
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Não foi possível realizar a compra",
+          description: "Seu carrinho está vazio!",
+        });
+      }
     }
   };
   return (

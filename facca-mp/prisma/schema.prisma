@@ -45,6 +45,9 @@ model Order {
   timeStamp    DateTime       @updatedAt
   userID       String
   user         User           @relation(fields: [userID], references: [id])
+  discount Float
+  productsSum Decimal @db.Decimal(6, 2)
+  finalPrice   Decimal @db.Decimal(6, 2)
   productOrder ProductOrder[]
 }
 

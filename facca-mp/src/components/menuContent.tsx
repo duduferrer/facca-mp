@@ -17,7 +17,7 @@ import { CartContext } from "@/app/providers/cartProvider";
 import Link from "next/link";
 
 const MenuContent = () => {
-  const { setProducts } = useContext(CartContext);
+  const { setProducts, products } = useContext(CartContext);
   const handleLoginClick = async () => {
     await signIn();
   };
@@ -28,6 +28,15 @@ const MenuContent = () => {
   const { status, data } = useSession();
   const { setTheme, theme } = useTheme();
   const [isChecked, setChecked] = useState(false);
+
+  const [balance, setBalance] = useState(
+    BRL.format(Number(data?.user.balance))
+  );
+
+  useEffect(() => {
+    setBalance(BRL.format(Number(data?.user.balance)));
+  }, [products, data]);
+
   useEffect(() => {
     theme == "dark" ? setChecked(true) : setChecked(false);
   }, []);
@@ -77,9 +86,7 @@ const MenuContent = () => {
               <div className="py-5">
                 <p>
                   Saldo:{" "}
-                  <span className="font-semibold text-lg">
-                    {BRL.format(Number(data?.user.balance))}
-                  </span>
+                  <span className="font-semibold text-lg">{balance}</span>
                 </p>
               </div>
             </>

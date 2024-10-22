@@ -12,6 +12,9 @@ export const addOrderToDB = async (
     const order: Order = await db.order.create({
       data: {
         userID: userID,
+        discount: discount,
+        finalPrice: 0,
+        productsSum: 0,
       },
     });
     let totalPrice = 0;
@@ -33,6 +36,16 @@ export const addOrderToDB = async (
           });
           totalPrice =
             totalPrice + dbProduct.sellPrice.toNumber() * product.quantity;
+          await db.order.update({
+            where: {
+              id: order.id,
+            },
+            data: {
+              finalPrice: totalPrice - totalPrice * discount,
+              discount: discount,
+              productsSum: totalPrice,
+            },
+          });
           await db.user.update({
             where: {
               id: userID,

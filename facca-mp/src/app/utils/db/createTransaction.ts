@@ -3,7 +3,11 @@ import { CartProduct } from "@/app/providers/cartProvider";
 import { db } from "@/lib/prisma";
 import { Order } from "@prisma/client";
 
-export const addOrderToDB = async (products: CartProduct[], userID: string) => {
+export const addOrderToDB = async (
+  products: CartProduct[],
+  userID: string,
+  discount: number
+) => {
   try {
     const order: Order = await db.order.create({
       data: {
@@ -35,7 +39,7 @@ export const addOrderToDB = async (products: CartProduct[], userID: string) => {
             },
             data: {
               balance: {
-                decrement: totalPrice,
+                decrement: totalPrice - totalPrice * discount,
               },
             },
           });

@@ -25,7 +25,13 @@ const Cart = () => {
   const { products, setProducts } = useContext(CartContext);
   const { status, data: session } = useSession();
   const [subtotal, setSubtotal] = useState(0);
-  const desconto = 3.2;
+  const [discount, setDiscount] = useState(0);
+
+  useEffect(() => {
+    session?.user.member
+      ? setDiscount(Number(process.env.NEXT_PUBLIC_DISCOUNT_PERCENTAGE))
+      : setDiscount(0);
+  }, [session]);
 
   useEffect(() => {
     let sum = 0;
@@ -81,7 +87,11 @@ const Cart = () => {
       askLogin();
     } else {
       if (products.length > 0) {
-        const orderPlaced = await addOrderToDB(products, session.user.id);
+        const orderPlaced = await addOrderToDB(
+          products,
+          session.user.id,
+          discount
+        );
         orderPlaced ? orderSuccess() : orderFail();
       } else {
         toast({
@@ -122,14 +132,14 @@ const Cart = () => {
               <div className="flex">
                 <div className="flex mx-auto gap-7">
                   <p>Desconto</p>
-                  <p>- {BRL.format(desconto)}</p>
+                  <p>- {BRL.format(subtotal * discount)}</p>
                 </div>
               </div>
               <div className="flex">
                 <div className="flex mx-auto mt-5 gap-7">
                   <p className="font-semibold text-3xl">Total</p>
                   <p className="font-semibold text-xl mt-auto">
-                    {BRL.format(subtotal - desconto)}
+                    {BRL.format(subtotal - subtotal * discount)}
                   </p>
                 </div>
               </div>

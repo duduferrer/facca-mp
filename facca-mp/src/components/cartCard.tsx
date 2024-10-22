@@ -19,7 +19,7 @@ const CartCard = ({ product }: Product) => {
               src={
                 product.imageURL
                   ? (product.imageURL as string)
-                  : (process.env.NO_IMAGE_PRODUCT as string)
+                  : (process.env.NEXT_PUBLIC_NO_IMAGE_PRODUCT as string)
               }
               alt={product.name}
               width={100}

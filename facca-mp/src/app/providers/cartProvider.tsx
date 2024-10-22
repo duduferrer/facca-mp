@@ -24,9 +24,12 @@ export const CartContext = createContext<ICartContext>({
 });
 
 const CartProvider = ({ children }: { children: ReactNode }) => {
-  const sessionStorageCart = JSON.parse(
-    sessionStorage.getItem("@facca/cart-products") || "[]"
-  );
+  let sessionStorageCart = [];
+  if (typeof window !== "undefined") {
+    sessionStorageCart = JSON.parse(
+      sessionStorage.getItem("@facca/cart-products") || "[]"
+    );
+  }
   const [products, setProducts] = useState<CartProduct[]>([]);
 
   useEffect(() => {

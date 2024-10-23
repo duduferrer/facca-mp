@@ -17,7 +17,7 @@ const handler = NextAuth({
       session.user.id = user.id;
       session.user.role = user.role;
       session.user.member = user.member;
-      session.user.balance = user.balance;
+      session.user.balance = Number(user.balance);
       return session;
     },
   },

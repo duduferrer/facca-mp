@@ -5,6 +5,7 @@ import Image from "next/image";
 import { BRL } from "../app/utils/convertAsCurrency";
 import { CartContext } from "@/app/providers/cartProvider";
 import { useContext } from "react";
+import { useSession } from "next-auth/react";
 
 interface ProductCardProps {
   product: Product;
@@ -15,6 +16,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const handleCardClick = () => {
     increaseQuantity({ ...product });
   };
+  const { data } = useSession();
 
   return (
     <Card
@@ -40,9 +42,26 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <p className="text-md font-semibold max-w-36 text-nowrap text-ellipsis overflow-hidden">
               {product.name}
             </p>
-            <p className="text-sm font-semibold">
-              {BRL.format(Number(product.sellPrice))}
-            </p>
+            {data?.user.member ? (
+              <div className="flex justify-between">
+                <p className="text-sm font-semibold line-through mt-auto decoration-red-600">
+                  {BRL.format(Number(product.sellPrice))}
+                </p>
+                <p className="text-md font-semibold">
+                  {BRL.format(
+                    Number(product.sellPrice) -
+                      Number(product.sellPrice) *
+                        Number(process.env.NEXT_PUBLIC_DISCOUNT_PERCENTAGE)
+                  )}
+                </p>
+              </div>
+            ) : (
+              <div>
+                <p className="text-sm font-semibold">
+                  {BRL.format(Number(product.sellPrice))}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </CardContent>

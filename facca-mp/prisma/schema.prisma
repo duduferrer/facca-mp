@@ -103,7 +103,7 @@ model Order {
 model ProductOrder {
   id        String  @id @unique @default(uuid())
   orderID   String
-  order     Order   @relation(fields: [orderID], references: [id])
+  order     Order   @relation(fields: [orderID], references: [id], onDelete: Cascade)
   productID String
   product   Product @relation(fields: [productID], references: [id])
   price     Decimal @db.Decimal(6, 2)

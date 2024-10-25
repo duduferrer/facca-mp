@@ -18,6 +18,14 @@ enum Role{
   USER
   MASTER
 }
+enum FaccaOpType{
+  INCOME
+  OUTCOME
+}
+enum UserOpType{
+  PAYMENT
+  REFUND
+}
 
 model Category {
   id       String    @id @unique @default(uuid())
@@ -26,18 +34,58 @@ model Category {
   product  Product[]
 }
 
+model FACCAOperation{
+  id       String    @id @unique @default(uuid())
+  timeStamp    DateTime       @updatedAt
+  type  FaccaOpType
+  value Decimal @db.Decimal(6,2)
+  observation String?
+  isMP Boolean
+}
+
+model Absence{
+  id       String    @id @unique @default(uuid())
+  timeStamp    DateTime       @updatedAt
+  beginDate DateTime
+  endDate DateTime
+  observation String?
+  userID  String
+  user  User @relation(fields: [userID], references: [id])
+}
+
+model ProductLosses{
+  id String @id @unique @default(uuid())
+  timeStamp DateTime @updatedAt
+  quantity Int @db.SmallInt
+  productID String
+  product Product @relation(fields: [productID], references: [id])
+
+}
+
+model FinancialOperation {
+  id  String         @id @unique @default(uuid())
+  timeStamp    DateTime       @updatedAt
+  value Decimal @db.Decimal(6,2)
+  type  UserOpType
+  observation String?
+  userID String
+  user  User @relation(fields: [userID], references: [id])
+}
+
 model Product {
   id           String         @id @unique @default(uuid())
   categoryID   String
   category     Category       @relation(fields: [categoryID], references: [id])
   slug         String
-  sellPrice        Decimal        @db.Decimal(6, 2)
-  buyPrice    Decimal @db.Decimal(6,2)
+  sellPrice    Decimal        @db.Decimal(6, 2)
+  buyPrice     Decimal @db.Decimal(6,2)
   imageURL     String?
   barcode      String?
   name         String
   stock Int @db.SmallInt @default(0)
+  isVisible Boolean @default(true)
   productOrder ProductOrder[]
+  productLosses ProductLosses[]
 }
 
 model Order {
@@ -45,9 +93,10 @@ model Order {
   timeStamp    DateTime       @updatedAt
   userID       String
   user         User           @relation(fields: [userID], references: [id])
-  discount Float
-  productsSum Decimal @db.Decimal(6, 2)
+  discount     Float
+  productsSum  Decimal @db.Decimal(6, 2)
   finalPrice   Decimal @db.Decimal(6, 2)
+  profit       Decimal @db.Decimal(6, 2)
   productOrder ProductOrder[]
 }
 
@@ -58,6 +107,7 @@ model ProductOrder {
   productID String
   product   Product @relation(fields: [productID], references: [id])
   price     Decimal @db.Decimal(6, 2)
+  buyPrice  Decimal @db.Decimal(6,2)
   quantity  Float
 }
 
@@ -100,6 +150,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   order         Order[]
+  operations  FinancialOperation[]
+  absence Absence[]
   role Role @default(USER)
   member  Boolean @default(false)
   balance Decimal @db.Decimal(6,2) @default(0)

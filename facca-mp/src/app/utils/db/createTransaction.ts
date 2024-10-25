@@ -15,9 +15,11 @@ export const addOrderToDB = async (
         discount: discount,
         finalPrice: 0,
         productsSum: 0,
+        profit: 0,
       },
     });
-    let totalPrice = 0;
+    let totalPrice = 0; //total price of order, without discounts
+    let totalCost = 0;
     await Promise.all(
       products.map(async (product: CartProduct) => {
         const dbProduct = await db.product.findUnique({
@@ -32,10 +34,14 @@ export const addOrderToDB = async (
               productID: product.id,
               price: dbProduct.sellPrice,
               quantity: product.quantity,
+              buyPrice: product.buyPrice,
             },
           });
           totalPrice =
-            totalPrice + dbProduct.sellPrice.toNumber() * product.quantity;
+            totalPrice + dbProduct.sellPrice.toNumber() * product.quantity; //store the prices sum of every product
+          totalCost =
+            totalCost + dbProduct.buyPrice.toNumber() * product.quantity; //store the cost sum of every product
+
           await db.order.update({
             where: {
               id: order.id,
@@ -44,6 +50,7 @@ export const addOrderToDB = async (
               finalPrice: totalPrice - totalPrice * discount,
               discount: discount,
               productsSum: totalPrice,
+              profit: totalPrice - totalPrice * discount - totalCost,
             },
           });
           await db.user.update({

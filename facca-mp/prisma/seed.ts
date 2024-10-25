@@ -8,8 +8,6 @@ async function main() {
       data: {
         name: "Bebidas",
         slug: "bebidas",
-        imageURL:
-          "https://utfs.io/f/f3caf81e-a2dc-423a-a00c-c2157a4cbd09-1t8n66.svg",
       },
     });
     const beverages = [
@@ -19,7 +17,7 @@ async function main() {
         sellPrice: 2,
         buyPrice: 1,
         barcode: "78912939",
-        imageURL: "https://cdn-cosmos.bluesoft.com.br/products/78912939",
+
         categoryID: beverageCategory.id,
       },
       {
@@ -49,8 +47,6 @@ async function main() {
       data: {
         name: "Salgados",
         slug: "salgados",
-        imageURL:
-          "https://utfs.io/f/f3caf81e-a2dc-423a-a00c-c2157a4cbd09-1t8n66.svg",
       },
     });
     const snacks = [
@@ -89,8 +85,6 @@ async function main() {
       data: {
         name: "Doces",
         slug: "doces",
-        imageURL:
-          "https://utfs.io/f/205fac25-861d-4156-9b90-b66f3017c21d-1k7wit.svg",
       },
     });
     const candies = [

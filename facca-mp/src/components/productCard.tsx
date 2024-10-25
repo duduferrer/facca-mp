@@ -22,9 +22,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
       onClick={handleCardClick}
     >
       <CardContent className="p-2">
-        <div>
+        <div className="">
           <Image
-            className="mx-auto"
+            className="mx-auto size-20"
             src={
               product.imageURL
                 ? (product.imageURL as string)

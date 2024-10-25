@@ -8,15 +8,25 @@ import { db } from "@/lib/prisma";
 
 const productsFiltered = async (category: CategoryType) => {
   if (category == "all") {
-    const products = await db.product.findMany({});
+    const products = await db.product.findMany({
+      where: {
+        isVisible: true,
+      },
+    });
     return products;
   } else {
     const products = await db.product.findMany({
+      orderBy: {
+        name: "asc",
+      },
       where: {
-        category: {
-          slug: {
-            equals: category,
+        AND: {
+          category: {
+            slug: {
+              equals: category,
+            },
           },
+          isVisible: true,
         },
       },
     });

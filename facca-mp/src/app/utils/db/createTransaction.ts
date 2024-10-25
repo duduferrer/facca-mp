@@ -53,19 +53,19 @@ export const addOrderToDB = async (
               profit: totalPrice - totalPrice * discount - totalCost,
             },
           });
-          await db.user.update({
-            where: {
-              id: userID,
-            },
-            data: {
-              balance: {
-                decrement: totalPrice - totalPrice * discount,
-              },
-            },
-          });
         }
       })
     );
+    await db.user.update({
+      where: {
+        id: userID,
+      },
+      data: {
+        balance: {
+          decrement: totalPrice - totalPrice * discount,
+        },
+      },
+    });
     return true;
   } catch (error) {
     console.error("Error placing order:", error);

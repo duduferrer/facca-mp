@@ -5,7 +5,7 @@ import {
   MoonIcon,
   ShoppingBagIcon,
 } from "lucide-react";
-import { SheetContent, SheetHeader } from "./ui/sheet";
+import { SheetClose, SheetContent, SheetHeader } from "./ui/sheet";
 import { Switch } from "./ui/switch";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
@@ -98,16 +98,20 @@ const MenuContent = () => {
           </Button>
         ) : (
           <div>
-            <Link href={"/purchases"}>
-              <Button className="w-full mb-2" variant={"outline"}>
-                <ShoppingBagIcon className="mr-2" /> Compras
-              </Button>
-            </Link>
-            <Link href={"profile"}>
-              <Button className="w-full mb-2" variant={"outline"}>
-                <CircleUserRound className="mr-2" /> Perfil
-              </Button>
-            </Link>
+            <SheetClose asChild>
+              <Link href={"/purchases"}>
+                <Button className="w-full mb-2" variant={"outline"}>
+                  <ShoppingBagIcon className="mr-2" /> Compras
+                </Button>
+              </Link>
+            </SheetClose>
+            <SheetClose asChild>
+              <Link href={"profile"}>
+                <Button className="w-full mb-2" variant={"outline"}>
+                  <CircleUserRound className="mr-2" /> Perfil
+                </Button>
+              </Link>
+            </SheetClose>
             <Button
               className="w-full mb-2"
               variant={"outline"}

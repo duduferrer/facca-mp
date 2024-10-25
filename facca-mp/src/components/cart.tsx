@@ -35,12 +35,9 @@ const Cart = () => {
 
   useEffect(() => {
     let sum = 0;
-    products
-      .map((product) => {
-        sum = Number(product.sellPrice) * product.quantity + sum;
-        return sum;
-      })
-      .forEach((el) => el + sum);
+    products.map((product) => {
+      sum = Number(product.sellPrice) * product.quantity + sum;
+    });
     setSubtotal(sum);
   }, [products]);
 

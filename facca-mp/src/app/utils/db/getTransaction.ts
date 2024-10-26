@@ -1,5 +1,5 @@
 "use server";
-import { TableOrder } from "@/app/purchases/ui/table";
+import { TableOrder } from "@/app/manager/purchases/ui/table";
 import { db } from "@/lib/prisma";
 import { useSession } from "next-auth/react";
 import { DateRange } from "react-day-picker";
@@ -38,6 +38,7 @@ export const getOrders = async (
     const formattedOrders: TableOrder[] = orders.map((order) => ({
       ...order,
       products: order.productOrder.map((product) => ({
+        id: product.product.id,
         name: product.product.name,
         quantity: Number(product.quantity),
         price: Number(product.price),

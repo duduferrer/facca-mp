@@ -54,6 +54,16 @@ export const addOrderToDB = async (
             },
           });
         }
+        await db.product.update({
+          where: {
+            id: product.id,
+          },
+          data: {
+            stock: {
+              decrement: product.quantity,
+            },
+          },
+        });
       })
     );
     await db.user.update({
@@ -66,6 +76,7 @@ export const addOrderToDB = async (
         },
       },
     });
+
     return true;
   } catch (error) {
     console.error("Error placing order:", error);

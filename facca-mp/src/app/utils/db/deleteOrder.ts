@@ -1,8 +1,13 @@
 "use server";
 
+import { ProductsDeleted } from "@/app/manager/purchases/ui/table";
 import { db } from "@/lib/prisma";
 
-const deleteOrder = async (orderID: string, userId: string) => {
+const deleteOrder = async (
+  orderID: string,
+  userId: string,
+  products: ProductsDeleted[]
+) => {
   try {
     const order = await db.order.findFirst({
       where: {
@@ -24,6 +29,18 @@ const deleteOrder = async (orderID: string, userId: string) => {
           increment: order?.finalPrice,
         },
       },
+    });
+    products.map(async (product) => {
+      await db.product.update({
+        where: {
+          id: product.id,
+        },
+        data: {
+          stock: {
+            increment: product.quantity,
+          },
+        },
+      });
     });
     return true;
   } catch (e) {

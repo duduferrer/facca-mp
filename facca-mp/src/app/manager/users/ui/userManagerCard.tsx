@@ -136,7 +136,7 @@ const UserManagerCard = ({ user }: { user: User }) => {
               <Input
                 type="checkbox"
                 defaultChecked={isMember}
-                onChange={(e) => setIsMember(Boolean(e.target.value))}
+                onChange={(e) => setIsMember(Boolean(e.target.checked))}
               />
             </p>
           </div>

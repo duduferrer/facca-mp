@@ -50,11 +50,11 @@ const UsersManagerTable = ({ users }: { users: User[] | undefined }) => {
                     <TableCell className="text-center">{user.email}</TableCell>
                     {user.member ? (
                       <TableCell className="text-center">
-                        <BadgeCheck />
+                        <BadgeCheck className="text-center" />
                       </TableCell>
                     ) : (
                       <TableCell className="text-center">
-                        <BadgeX />
+                        <BadgeX className="text-center" />
                       </TableCell>
                     )}
                     <TableCell className="text-center">{user.role}</TableCell>

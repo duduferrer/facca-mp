@@ -41,6 +41,7 @@ model FACCAOperation{
   value Decimal @db.Decimal(6,2)
   observation String?
   isMP Boolean
+  transactionBy String
 }
 
 model Absence{
@@ -70,6 +71,8 @@ model FinancialOperation {
   observation String?
   userID String
   user  User @relation(fields: [userID], references: [id])
+  transactionBy String
+  
 }
 
 model Product {

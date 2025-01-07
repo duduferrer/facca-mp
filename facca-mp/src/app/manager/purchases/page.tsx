@@ -8,7 +8,7 @@ import { signIn, useSession } from "next-auth/react";
 import { OrdersTable, TableOrder } from "./ui/table";
 import { Order, ProductOrder, User } from "@prisma/client";
 import { getOrders } from "@/app/utils/db/getTransaction";
-import UserSelector from "./ui/userSelector";
+import UserSelector from "@/components/userSelector";
 
 const Purchases = () => {
   const [date, setDate] = useState<DateRange | undefined>({

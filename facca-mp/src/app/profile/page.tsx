@@ -4,9 +4,12 @@ import { Card } from "@/components/ui/card";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { BRL } from "../utils/convertAsCurrency";
+import StatementTable from "./ui/statementTable";
+import StatementTableFrame from "./ui/statementTableFrame";
 
 const Profile = () => {
   const { data } = useSession();
+  const userID = data?.user.id;
   return (
     <div className="">
       <Card className="w-2/3 mx-auto mt-4 p-10">
@@ -46,9 +49,7 @@ const Profile = () => {
             </p>
           </div>
           <div>Extrato de mensalidades e pagamentos</div>
-          {/* TABELA
-          +----+-------+----+
-          |MES | VALOR | E/S| (VERDE E / VERMELHO S) */}
+          <StatementTableFrame userID={userID} />
         </div>
       </Card>
     </div>

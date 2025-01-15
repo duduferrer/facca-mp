@@ -4,9 +4,8 @@ import { DatePickerWithRange } from "./ui/dateRangePicker";
 import { DateRange } from "react-day-picker";
 import { subDays } from "date-fns";
 import { Button } from "@/components/ui/button";
-import { signIn, useSession } from "next-auth/react";
 import { OrdersTable, TableOrder } from "./ui/table";
-import { Order, ProductOrder, User } from "@prisma/client";
+
 import { getOrders } from "@/app/utils/db/getTransaction";
 import UserSelector from "@/components/userSelector";
 
@@ -16,7 +15,6 @@ const Purchases = () => {
     to: new Date(),
   });
   const [finalSum, setFinalSum] = useState(0);
-  const { data: session } = useSession();
   const [userId, setUserId] = useState("");
   const [orders, setOrders] = useState<TableOrder[] | undefined>([]);
   const handleSearchClick = async () => {

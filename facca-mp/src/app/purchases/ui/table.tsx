@@ -4,14 +4,13 @@ import { BRL } from "@/app/utils/convertAsCurrency";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Order, ProductOrder } from "@prisma/client";
+import { Order } from "@prisma/client";
 import { SquareArrowDown, SquareArrowRight } from "lucide-react";
 import ProductTable from "./productTable";
 import { useState } from "react";

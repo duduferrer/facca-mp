@@ -26,7 +26,7 @@ const ProductTable = ({ order }: { order: TableOrder }) => {
           let price = product.price;
           let quantity = product.quantity;
           return (
-            <TableRow>
+            <TableRow key={product.id}>
               <TableCell></TableCell>
               <TableCell className="max-w-48 text-ellipsis text-nowrap overflow-hidden">
                 {name}

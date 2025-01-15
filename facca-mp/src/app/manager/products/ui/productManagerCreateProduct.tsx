@@ -141,7 +141,7 @@ const CreateProduct = () => {
             <p>Preço de Custo: R$</p>
             <Input
               type="number"
-              onChange={(e) => BRL.format(Number(e.target.value))}
+              onChange={(e) => setCost(Number(e.target.value))}
               defaultValue={0}
               className="text-center"
               step="0.01"

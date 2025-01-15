@@ -2,7 +2,6 @@ import { MinusSquareIcon, PlusSquareIcon, Trash2Icon } from "lucide-react";
 import { Button } from "./ui/button";
 import { useContext, useEffect, useState } from "react";
 import { CartContext, CartProduct } from "@/app/providers/cartProvider";
-import { Product } from "@prisma/client";
 
 interface QuantityControllerProps {
   product: CartProduct;

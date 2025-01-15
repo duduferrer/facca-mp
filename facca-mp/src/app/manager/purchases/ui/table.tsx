@@ -4,24 +4,16 @@ import { BRL } from "@/app/utils/convertAsCurrency";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Order, ProductOrder } from "@prisma/client";
+import { Order } from "@prisma/client";
 import { SquareArrowDown, SquareArrowRight, Trash2Icon } from "lucide-react";
 import ProductTable from "./productTable";
-import { useEffect, useState } from "react";
-import { Dialog } from "@radix-ui/react-dialog";
-import {
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,

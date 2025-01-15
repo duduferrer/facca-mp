@@ -23,7 +23,7 @@ import { ToastAction } from "@radix-ui/react-toast";
 const Cart = () => {
   const { toast } = useToast();
   const { products, setProducts } = useContext(CartContext);
-  const { status, data: session, update } = useSession();
+  const { data: session, update } = useSession();
   const [subtotal, setSubtotal] = useState(0);
   const [discount, setDiscount] = useState(0);
 

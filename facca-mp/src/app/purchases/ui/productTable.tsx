@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/table";
 import { TableOrder } from "./table";
 import { BRL } from "@/app/utils/convertAsCurrency";
+import { randomUUID } from "crypto";
 const ProductTable = ({ order }: { order: TableOrder }) => {
   return (
     <Table className="-mt-4">
@@ -26,7 +27,7 @@ const ProductTable = ({ order }: { order: TableOrder }) => {
           let price = product.price;
           let quantity = product.quantity;
           return (
-            <TableRow>
+            <TableRow key={randomUUID()}>
               <TableCell></TableCell>
               <TableCell className="max-w-48 text-ellipsis text-nowrap overflow-hidden">
                 {name}

@@ -1,7 +1,6 @@
 import { db } from "@/lib/prisma";
 import { Product } from "@prisma/client";
 import productsFiltered from "./filterProducts";
-import CategoryType from "../enumCategories";
 /**
  * Returns product, search by ID
  * @param id - Product ID

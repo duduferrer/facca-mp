@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { format, setDefaultOptions, subDays } from "date-fns";
+import { format, setDefaultOptions } from "date-fns";
 import { Calendar as CalendarIcon, CircleXIcon } from "lucide-react";
 import { DateRange } from "react-day-picker";
 import { ptBR } from "date-fns/locale";

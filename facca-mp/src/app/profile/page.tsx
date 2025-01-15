@@ -2,9 +2,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { BRL } from "../utils/convertAsCurrency";
-import StatementTable from "./ui/statementTable";
 import StatementTableFrame from "./ui/statementTableFrame";
 
 const Profile = () => {

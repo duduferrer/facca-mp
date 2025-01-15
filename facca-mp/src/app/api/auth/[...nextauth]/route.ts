@@ -27,7 +27,7 @@ const handler = NextAuth({
       }
       return token;
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       if (token) {
         session.user.id = token.id as string; //------->alterada
         session.user.role = token.role as Role; //------->alterada

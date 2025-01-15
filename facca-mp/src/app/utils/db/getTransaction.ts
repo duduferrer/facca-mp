@@ -1,7 +1,6 @@
 "use server";
 import { TableOrder } from "@/app/manager/purchases/ui/table";
 import { db } from "@/lib/prisma";
-import { useSession } from "next-auth/react";
 import { DateRange } from "react-day-picker";
 
 export const getOrders = async (

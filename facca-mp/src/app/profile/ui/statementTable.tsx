@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { BRL } from "@/app/utils/convertAsCurrency";
-import { FinancialOperation, User } from "@prisma/client";
+import { FinancialOperation } from "@prisma/client";
 import getUserStatement from "@/app/utils/db/getUserStatement";
 import { useEffect, useState } from "react";
 

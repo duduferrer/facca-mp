@@ -1,5 +1,5 @@
 "use client";
-import { BRL } from "@/app/utils/convertAsCurrency";
+
 import createFinancialOp, {
   FaccaOperationProps,
   UserOperationProps,
@@ -13,7 +13,7 @@ import UserSelector from "@/components/userSelector";
 import { toast } from "@/hooks/use-toast";
 import { FaccaOpType, UserOpType } from "@prisma/client";
 import { useSession } from "next-auth/react";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 
 interface BalanceManCardProps {
   type: "ADD" | "SUB";

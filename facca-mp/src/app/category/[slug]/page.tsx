@@ -1,8 +1,8 @@
-import SearchBar from "@/components/searchBar";
+import SearchBar from "../../../components/searchBar";
 import Categories from "../../../components/categories";
 import Products from "@/components/productsList";
 import productsFiltered from "@/app/utils/db/filterProducts";
-import { CategoryType } from "../../utils/enumCategories";
+import CategoryType from "../../utils/enumCategories";
 import { db } from "@/lib/prisma";
 
 interface CategoriesPageProps {

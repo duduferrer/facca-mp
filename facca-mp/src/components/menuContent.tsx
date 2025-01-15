@@ -119,7 +119,7 @@ const MenuContent = () => {
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link href={"profile"}>
+              <Link href={"/profile"}>
                 <Button className="w-full mb-2" variant={"outline"}>
                   <CircleUserRound className="mr-2" /> Perfil
                 </Button>

@@ -20,7 +20,7 @@ const Profile = () => {
               alt={data?.user?.name?.toString().split(" ")[0]}
             />
             <AvatarFallback>
-              {data?.user?.name?.toString().slice(0, 2).toUpperCase()}
+              {data?.user?.name?.toString().slice(0, 1).toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <p className="mt-auto font-semibold text-lg">{data?.user.name}</p>

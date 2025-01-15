@@ -1,4 +1,6 @@
+"use client";
 import {
+  CircleDollarSignIcon,
   CircleUserRound,
   LogInIcon,
   LogOutIcon,
@@ -15,15 +17,22 @@ import { useState, useEffect, useContext } from "react";
 import { BRL } from "@/app/utils/convertAsCurrency";
 import { CartContext } from "@/app/providers/cartProvider";
 import Link from "next/link";
+import PaymentQrCode from "./ui/paymentQrCode";
 
 const MenuContent = () => {
   const { setProducts, products } = useContext(CartContext);
+  const [paymentVisible, setPaymentVisible] = useState(false);
+  const [amount, setAmount] = useState("");
+  const [userId, setUserId] = useState("");
   const handleLoginClick = async () => {
     await signIn();
   };
   const handleLogoutClick = async () => {
     await signOut();
     setProducts([]);
+  };
+  const handlePaymentClick = () => {
+    setPaymentVisible(!paymentVisible);
   };
   const { status, data } = useSession();
   const { setTheme, theme } = useTheme();
@@ -34,7 +43,11 @@ const MenuContent = () => {
   );
 
   useEffect(() => {
-    setBalance(BRL.format(Number(data?.user.balance)));
+    if (data) {
+      setBalance(BRL.format(Number(data.user.balance)));
+      setAmount(data.user.balance.toFixed(2).toString());
+      setUserId(data.user.id);
+    }
   }, [products, data]);
 
   useEffect(() => {
@@ -73,7 +86,7 @@ const MenuContent = () => {
                     alt={data?.user?.name?.toString().split(" ")[0]}
                   />
                   <AvatarFallback>
-                    {data?.user?.name?.toString().slice(0, 2).toUpperCase()}
+                    {data?.user?.name?.toString().slice(0, 1).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
                 <p>
@@ -112,6 +125,19 @@ const MenuContent = () => {
                 </Button>
               </Link>
             </SheetClose>
+
+            <Button
+              className="w-full mb-2"
+              variant={"outline"}
+              onClick={handlePaymentClick}
+            >
+              <CircleDollarSignIcon className="mr-2" /> Pagamento
+            </Button>
+            {paymentVisible ? (
+              <PaymentQrCode amount={amount} transactionId={userId} />
+            ) : (
+              <></>
+            )}
             <Button
               className="w-full mb-2"
               variant={"outline"}

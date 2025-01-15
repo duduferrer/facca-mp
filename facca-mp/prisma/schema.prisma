@@ -156,7 +156,7 @@ model User {
   operations  FinancialOperation[]
   absence Absence[]
   role Role @default(USER)
-  member  Boolean @default(false)
+  member  Boolean @default(true)
   balance Decimal @db.Decimal(6,2) @default(0)
 
 

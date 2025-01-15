@@ -28,7 +28,6 @@ export async function middleware(req: NextRequest) {
   }
 
   const userRole = token.role as Role;
-  console.log(token);
 
   // Protege rotas que requerem login
   if (protectedRoutes.some((route) => url.pathname.startsWith(route))) {

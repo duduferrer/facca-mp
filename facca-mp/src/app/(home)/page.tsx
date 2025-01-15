@@ -1,6 +1,6 @@
 import Categories from "../../components/categories";
 import Products from "../../components/productsList";
-import SearchBar from "@/components/ui/searchBar";
+import SearchBar from "@/components/searchBar";
 import { getAllProducts } from "../utils/db/getProducts";
 
 export default async function Home() {

@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { useSession } from "next-auth/react";
 import { BRL } from "../utils/convertAsCurrency";
 import StatementTableFrame from "./ui/statementTableFrame";
-
+export const dynamic = "force-dynamic";
 const Profile = () => {
   const { data } = useSession();
   const userID = data?.user.id;

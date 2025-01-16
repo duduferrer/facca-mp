@@ -8,7 +8,7 @@ import { OrdersTable, TableOrder } from "./ui/table";
 
 import { getOrders } from "@/app/utils/db/getTransaction";
 import UserSelector from "@/components/userSelector";
-
+export const dynamic = "force-dynamic";
 const Purchases = () => {
   const [date, setDate] = useState<DateRange | undefined>({
     from: subDays(new Date(), 30),

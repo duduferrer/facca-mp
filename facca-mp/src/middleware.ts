@@ -21,10 +21,7 @@ export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   const token = await getToken({ req, secret });
   const res = NextResponse.next();
-  res.headers.set(
-    "Cache-Control",
-    "public, max-age=60, s-maxage=60, stale-while-revalidate=30"
-  );
+
   if (!token) {
     // Redireciona para a página inicial se não estiver logado
     url.pathname = "/";

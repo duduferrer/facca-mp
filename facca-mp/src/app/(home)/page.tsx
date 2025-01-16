@@ -3,6 +3,7 @@ import Products from "../../components/productsList";
 import SearchBar from "@/components/searchBar";
 import { getAllProducts } from "../utils/db/getProducts";
 
+export const dynamic = "force-dynamic";
 export default async function Home() {
   const products = await getAllProducts();
   return (

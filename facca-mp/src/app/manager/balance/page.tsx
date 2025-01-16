@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import BalanceManCard from "./ui/balanceManagementCard";
-
+export const dynamic = "force-dynamic";
 const Balance = () => {
   return (
     <div className="">

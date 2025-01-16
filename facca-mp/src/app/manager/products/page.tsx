@@ -5,7 +5,7 @@
 
 import { getAllProducts } from "@/app/utils/db/getProducts";
 import ProductManagerTable from "./ui/productManagerTable";
-
+export const dynamic = "force-dynamic";
 const ProductManager = async () => {
   const products = await getAllProducts();
   return (

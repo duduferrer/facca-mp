@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { getOrders } from "../utils/db/getTransaction";
 import { useSession } from "next-auth/react";
 import { OrdersTable, TableOrder } from "./ui/table";
-
+export const dynamic = "force-dynamic";
 const Purchases = () => {
   const [date, setDate] = useState<DateRange | undefined>({
     from: subDays(new Date(), 30),

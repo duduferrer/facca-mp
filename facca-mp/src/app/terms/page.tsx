@@ -1,43 +1,69 @@
 const Terms = () => {
   return (
-    <p>
-      1. Introdução A Facca, acessível em https://facca.app.br, valoriza a
-      privacidade de seus usuários e está comprometida em proteger as
-      informações pessoais coletadas. Esta Política de Privacidade descreve como
-      coletamos, usamos, armazenamos e compartilhamos seus dados. 2. Informações
-      que Coletamos Podemos coletar as seguintes informações: Dados Pessoais:
-      Nome, endereço de e-mail e foto de perfil do Google. Dados de Uso:
-      Informações sobre como você interage com nosso site, como endereço IP,
-      tipo de navegador, páginas acessadas e tempo de visita. Cookies: Pequenos
-      arquivos armazenados em seu dispositivo para melhorar a experiência do
-      usuário. 3. Como Usamos Suas Informações As informações coletadas podem
-      ser usadas para: Criar e gerenciar seu perfil no site. Fornecer, operar e
-      melhorar nossos serviços. Personalizar sua experiência no site. Cumprir
-      obrigações legais e proteger nossos direitos. 4. Compartilhamento de Dados
-      Não vendemos, alugamos ou compartilhamos suas informações pessoais com
-      terceiros, exceto nas seguintes situações: Provedores de Serviços:
-      Empresas terceirizadas que nos ajudam a operar o site ou fornecer serviços
-      em nosso nome, como: Hospedagem: Vercel Banco de dados: NeonDB
-      Autenticação: Google Authentication Requisitos Legais: Quando exigido por
-      lei ou para proteger nossos direitos. Consentimento do Usuário: Quando
-      você nos autorizar explicitamente. 5. Proteção de Dados Adotamos medidas
-      técnicas e organizacionais adequadas para proteger suas informações contra
-      acesso não autorizado, perda, alteração ou divulgação. 6. Retenção de
-      Dados Reteremos suas informações pessoais apenas pelo tempo necessário
-      para cumprir os propósitos descritos nesta Política, salvo se um período
-      maior for exigido por lei. 7. Direitos do Usuário Você tem os seguintes
-      direitos em relação às suas informações pessoais: Acessar, corrigir ou
-      excluir seus dados pessoais. Revogar seu consentimento para o uso de seus
-      dados. Solicitar a portabilidade de seus dados. Para exercer seus
-      direitos, entre em contato conosco em duduferrer7@gmail.com. 8. Cookies e
-      Tecnologias Semelhantes Usamos cookies para melhorar sua experiência no
-      site. Você pode gerenciar as configurações de cookies no seu navegador. 9.
-      Alterações nesta Política de Privacidade Reservamo-nos o direito de
-      atualizar esta Política de Privacidade a qualquer momento. Quaisquer
-      alterações serão publicadas nesta página com a data de revisão atualizada.
-      10. Contato Se você tiver dúvidas ou preocupações sobre esta Política de
-      Privacidade, entre em contato conosco em: E-mail: duduferrer7@gmail.com
-    </p>
+    <div>
+      <h1>Termos de Uso</h1>
+      <h2>1. Introdução</h2>
+      <p>
+        Bem-vindo ao site da Facca, acessível em https://facca.app.br. Ao
+        acessar ou usar nossos serviços, você concorda com os presentes Termos
+        de Serviço. Caso não concorde com qualquer parte destes termos, você não
+        deve utilizar o site.
+      </p>
+      <h2>2. Uso do Site</h2>
+      <p>
+        Você se compromete Utilizar o site apenas para fins legais e de acordo
+        com os Termos de Serviço. Não usar o site de maneira que possa causar
+        prejuízo ao seu funcionamento ou interferir na experiência de outros
+        usuários. Fornecer informações verdadeiras e completas ao criar um
+        perfil ou interagir com nossos serviços.
+      </p>
+      <h2>3. Cadastro e Conta</h2>
+      <p>
+        Para acessar determinados recursos, pode ser necessário criar uma conta.
+        Ao criar uma conta: Você declara que todas as informações fornecidas são
+        precisas e atualizadas. Você é responsável por manter a
+        confidencialidade de suas credenciais de acesso. Notifique-nos
+        imediatamente em caso de uso não autorizado de sua conta.
+      </p>
+      <h2>4. Propriedade Intelectual</h2>
+      <p>
+        Todos os direitos de propriedade intelectual relacionados ao site e ao
+        seu conteúdo (incluindo textos, imagens, logotipos e design) pertencem à
+        Facca ou a seus licenciadores. Você não está autorizado a reproduzir,
+        distribuir ou modificar qualquer parte do site sem autorização prévia.
+      </p>
+      <h2>5. Limitação de Responsabilidade</h2>
+      <p>
+        Na medida permitida pela lei aplicável, a Facca não será responsável por
+        quaisquer danos diretos, indiretos, incidentais ou consequentes
+        decorrentes do uso ou da incapacidade de uso do site.
+      </p>
+      <h2>6. Modificações nos Termos de Serviço</h2>
+      <p>
+        Reservamo-nos o direito de alterar ou atualizar estes Termos de Serviço
+        a qualquer momento. Quaisquer alterações entrarão em vigor imediatamente
+        após sua publicação no site. É sua responsabilidade revisar os Termos
+        periodicamente.
+      </p>
+      <h2>7. Suspensão ou Encerramento de Acesso</h2>
+      <p>
+        Podemos suspender ou encerrar seu acesso ao site a qualquer momento, sem
+        aviso prévio, caso você viole estes Termos de Serviço ou por outras
+        razões consideradas necessárias.
+      </p>
+      <h2>8. Legislação Aplicável</h2>
+      <p>
+        Estes Termos de Serviço serão regidos e interpretados de acordo com as
+        leis brasileiras. Quaisquer disputas serão resolvidas nos tribunais
+        competentes do Brasil.
+      </p>
+      <h2>9. Contato</h2>
+      <p>
+        Se você tiver dúvidas ou preocupações sobre estes Termos de Serviço,
+        entre em contato conosco: FaccaE-mail: duduferrer7@gmail.com[Endereço
+        Físico, se aplicável][Telefone de contato, se aplicável]
+      </p>
+    </div>
   );
 };
 

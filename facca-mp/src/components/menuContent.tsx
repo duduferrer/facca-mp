@@ -5,6 +5,7 @@ import {
   LogInIcon,
   LogOutIcon,
   MoonIcon,
+  SheetIcon,
   ShoppingBagIcon,
 } from "lucide-react";
 import { SheetClose, SheetContent, SheetHeader } from "./ui/sheet";
@@ -59,7 +60,7 @@ const MenuContent = () => {
   }, [isChecked]);
 
   return (
-    <SheetContent side={"left"}>
+    <SheetContent side={"left"} className="justify-center">
       <div className="flex items-center justify-between mb-12 mt-5">
         <SheetHeader className="text-2xl font-bold">Menu</SheetHeader>
         <div className="flex gap-2 items-center">
@@ -125,6 +126,17 @@ const MenuContent = () => {
                 </Button>
               </Link>
             </SheetClose>
+            <SheetClose asChild>
+              <Link
+                href={
+                  "https://docs.google.com/spreadsheets/d/1nw4kLElvnScEY5bAqXZrEi9TnbGcf91-W9dO6EHeDWA/edit?gid=0#gid=0"
+                }
+              >
+                <Button className="w-full mb-2" variant={"outline"}>
+                  <SheetIcon className="mr-2" /> FACCA 2025
+                </Button>
+              </Link>
+            </SheetClose>
 
             <Button
               className="w-full mb-2"
@@ -148,6 +160,10 @@ const MenuContent = () => {
           </div>
         )}
       </div>
+      <footer className="text-xs flex absolute bottom-0 w-9/12 justify-between">
+        <Link href={"/policy"}>Politicas de Privacidade</Link>
+        <Link href={"/terms"}>Termos de Serviço</Link>
+      </footer>
     </SheetContent>
   );
 };

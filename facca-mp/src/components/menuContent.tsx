@@ -160,7 +160,7 @@ const MenuContent = () => {
           </div>
         )}
       </div>
-      <footer className="text-xs flex absolute bottom-0 w-9/12 justify-between">
+      <footer className="text-xs flex absolute bottom-0 w-9/12 justify-between invisible">
         <Link href={"/policy"}>Politicas de Privacidade</Link>
         <Link href={"/terms"}>Termos de Serviço</Link>
       </footer>

@@ -65,8 +65,11 @@ export const generatePixMP = (amount: string, transactionId: string) => {
     if (name?.length > 25) {
       name = name.slice(0, 24);
     }
-    if (Number(amount) > 0 && transactionId) {
+    if (Number(amount) != 0 && transactionId) {
       return generatePixUrl({ key, name, city, amount, transactionId });
-    } else return "Não existem débitos no market place.";
+    } else {
+      return "Não existem débitos no market place.";
+    }
+      
   }
 };

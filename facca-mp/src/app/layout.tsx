@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "FACCA APP-BH",
-  description: "Web app desenvolvido para gerenciar as finanças da FACCA.",
+  description: "MarketPlace",
 };
 
 export default function RootLayout({

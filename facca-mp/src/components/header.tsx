@@ -6,8 +6,18 @@ import { Sheet, SheetTrigger } from "./ui/sheet";
 import MenuContent from "./menuContent";
 import Link from "next/link";
 import Cart from "./cart";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "@/app/providers/cartProvider";
 
 const Header = () => {
+  const [productQty, setProductQty] = useState(0)
+  const { products, setProducts } = useContext(CartContext);
+
+  useEffect(()=>{
+    const totalProd = products.reduce((acc, prod)=>acc+prod.quantity,0)
+    setProductQty(totalProd)
+  },[products])
+
   return (
     <Card className="flex justify-between p-5 items-center">
       <Sheet>
@@ -24,7 +34,19 @@ const Header = () => {
       <Sheet>
         <SheetTrigger asChild>
           <Button size={"icon"} className="rounded" variant={"ghost"}>
-            <ShoppingBasketIcon />
+          <div className="">
+              {(()=>{
+                if(productQty>0 && productQty<10){
+                  return  <p className="bg-primary rounded-full justify-center w-4 text-xs absolute right-5 top-11 text-white">{productQty.toString()}</p>
+                }else if(productQty>=10){
+                  return  <p className="bg-primary rounded-full justify-center w-5 text-xs absolute right-5 top-11 text-white">9+</p>
+                }else{
+                  return  <p className="bg-primary rounded-full justify-center w-4 text-xs absolute right-5 top-11 text-white"></p>
+                }}
+              )()}
+            <ShoppingBasketIcon className="w-7"/> 
+          </div>
+
           </Button>
         </SheetTrigger>
         <Cart />

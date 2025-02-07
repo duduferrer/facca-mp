@@ -20,7 +20,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Card
-      className="p-2 min-w-40 max-w-40 h-50 hover:bg-accent/100 hover:text-accent-foreground cursor-pointer"
+      className="p-2 min-w-40 max-w-40 h-50 hover:bg-accent/100 hover:text-accent-foreground cursor-pointer active:bg-primary-foreground"
       onClick={handleCardClick}
     >
       <CardContent className="p-2">

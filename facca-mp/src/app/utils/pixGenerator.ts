@@ -27,13 +27,13 @@ const generatePixUrl = ({
   key,
   name,
   city,
-  amount,
+  amountAbs,
   transactionId,
 }: {
   key: string; // Chave Pix (e-mail, telefone, CPF, ou chave aleatória)
   name: string; // Nome do recebedor
   city: string; // Cidade do recebedor
-  amount: string; // Valor (formato: "12.34")
+  amountAbs: string; // Valor (formato: "12.34")
   transactionId?: string; // ID da transação (opcional)
 }): string => {
   const formatIndicatorAndPointOfInitMethod = "000201"; // Payload Format Indicator

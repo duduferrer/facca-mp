@@ -59,7 +59,7 @@ export const generatePixMP = (amount: string, transactionId: string) => {
   const key = process.env.NEXT_PUBLIC_PIX_KEY;
   let name = process.env.NEXT_PUBLIC_PIX_NAME;
   const city = process.env.NEXT_PUBLIC_PIX_CITY;
-  let amountAbs = Number(amount) < 0 ? return String(Number(amount)*-1) : return amount
+  Number(amount) < 0 ? let amountAbs = String(Number(amount)*-1) : let amountAbs = amount
   if (!key || !name || !city) {
     throw new Error("PIX parameters invalid");
   } else {

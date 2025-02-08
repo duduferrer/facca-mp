@@ -59,6 +59,7 @@ export const generatePixMP = (amount: string, transactionId: string) => {
   const key = process.env.NEXT_PUBLIC_PIX_KEY;
   let name = process.env.NEXT_PUBLIC_PIX_NAME;
   const city = process.env.NEXT_PUBLIC_PIX_CITY;
+  let amountAbs = Number(amount) < 0 ? String(Number(amount)*-1) : amount
   if (!key || !name || !city) {
     throw new Error("PIX parameters invalid");
   } else {
@@ -66,7 +67,7 @@ export const generatePixMP = (amount: string, transactionId: string) => {
       name = name.slice(0, 24);
     }
     if (Number(amount) != 0 && transactionId) {
-      return generatePixUrl({ key, name, city, amount, transactionId });
+      return generatePixUrl({ key, name, city, amountAbs, transactionId });
     } else {
       return "Não existem débitos no market place.";
     }

@@ -27,13 +27,13 @@ const generatePixUrl = ({
   key,
   name,
   city,
-  amount,
+  amountAbs,
   transactionId,
 }: {
   key: string; // Chave Pix (e-mail, telefone, CPF, ou chave aleatória)
   name: string; // Nome do recebedor
   city: string; // Cidade do recebedor
-  amount: string; // Valor (formato: "12.34")
+  amountAbs: string; // Valor (formato: "12.34")
   transactionId?: string; // ID da transação (opcional)
 }): string => {
   const formatIndicatorAndPointOfInitMethod = "000201"; // Payload Format Indicator
@@ -42,7 +42,7 @@ const generatePixUrl = ({
   const keyInfo = `${formatLength(key)}${key}`;
   const categoryCode = "52040000";
   const currency = "5303986"; //BRL
-  const transactionAmount = `54${formatLength(amount)}${amount}`;
+  const transactionAmount = `54${formatLength(amountAbs)}${amountAbs}`;
   const countryCode = "5802BR";
   const merchantName = `59${formatLength(name)}${name}`;
   const merchantCity = `60${formatLength(city)}${city}`;
@@ -59,6 +59,12 @@ export const generatePixMP = (amount: string, transactionId: string) => {
   const key = process.env.NEXT_PUBLIC_PIX_KEY;
   let name = process.env.NEXT_PUBLIC_PIX_NAME;
   const city = process.env.NEXT_PUBLIC_PIX_CITY;
+  let amountAbs = ""
+  if(Number(amount) < 0){
+   amountAbs = String(Number(amount)*-1) 
+  }else{
+    amountAbs = String(amount)
+  }
   if (!key || !name || !city) {
     throw new Error("PIX parameters invalid");
   } else {
@@ -66,7 +72,7 @@ export const generatePixMP = (amount: string, transactionId: string) => {
       name = name.slice(0, 24);
     }
     if (Number(amount) != 0 && transactionId) {
-      return generatePixUrl({ key, name, city, amount, transactionId });
+      return generatePixUrl({ key, name, city, amountAbs, transactionId });
     } else {
       return "Não existem débitos no market place.";
     }

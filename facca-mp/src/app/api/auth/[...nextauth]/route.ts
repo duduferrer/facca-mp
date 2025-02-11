@@ -4,6 +4,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/lib/prisma";
 import { Adapter } from "next-auth/adapters";
 import { Role } from "@prisma/client";
+import { getUserBalance } from "@/app/utils/db/getUserBalance";
 
 const handler = NextAuth({
   adapter: PrismaAdapter(db) as Adapter,
@@ -32,7 +33,7 @@ const handler = NextAuth({
         session.user.id = token.id as string; //------->alterada
         session.user.role = token.role as Role; //------->alterada
         session.user.member = token.member as boolean;
-        session.user.balance = Number(token.balance);
+        session.user.balance = await getUserBalance(token.id)
       }
       return session;
     },

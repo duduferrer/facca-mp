@@ -43,6 +43,19 @@ const ProductManagerCard = ({ product }: { product: Product }) => {
   const [stockLoss, setStockLoss] = useState(0);
   const [stock, setStock] = useState(product.stock);
   const [updateProduct, setUpdateProduct] = useState<UpdateProduct>();
+  const [sellSugestion, setSellSugestion] = useState(0);
+  const [faccaPrice, setFaccaPrice] = useState(0)
+  useEffect(() => {
+    const sellSugestion = cost + (cost * 100) / 100;
+    setSellSugestion(sellSugestion);
+  }, [cost]);
+
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_DISCOUNT_PERCENTAGE) {
+      const sellPriceWDiscount =
+        sell - sell * Number(process.env.NEXT_PUBLIC_DISCOUNT_PERCENTAGE);
+      setFaccaPrice(sellPriceWDiscount);
+    }}, [sell]);
   useEffect(() => {
     setProfit(sell - cost);
   }, [cost, sell]);
@@ -190,6 +203,12 @@ const ProductManagerCard = ({ product }: { product: Product }) => {
               defaultValue={Number(product.sellPrice)}
               className="text-center"
             />
+            <p>
+              Preço Sugerido: <span>{BRL.format(sellSugestion)}</span>
+            </p>
+            <p>
+              Preço FACCA: <span>{BRL.format(faccaPrice)}</span>
+            </p>
           </div>
           {profit < 0 ? (
             <p className="text-right text-red-600">

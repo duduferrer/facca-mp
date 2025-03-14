@@ -83,7 +83,13 @@ const Cart = () => {
   const handleBuyClick = async () => {
     if (!session?.user.id) {
       askLogin();
-    } else {
+    }else if(session.user.id == 'cm6p0mk040003qfwct4rz5trc'){
+      toast({      
+        variant: "destructive",
+        title: "Ué",
+        description: "Faça login na sua conta para fazer a compra",})
+    } 
+    else {
       if (products.length > 0) {
         const orderPlaced = await addOrderToDB(
           products,

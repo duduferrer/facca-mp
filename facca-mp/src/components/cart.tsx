@@ -83,7 +83,9 @@ const Cart = () => {
   const handleBuyClick = async () => {
     if (!session?.user.id) {
       askLogin();
-    }else if(session.user.id == 'cm6p0mk040003qfwct4rz5trc'){
+    }else if(session.user.id == 'cm6p0mk040003qfwct4rz5trc' || session.user.id == 'cm5ye376k0000n80ddqcz3kyw'){
+      let audio = new Audio('../assets/para-tira-que-eu-vou-cagar.mp3')
+      audio.play()
       toast({      
         variant: "destructive",
         title: "Ué",

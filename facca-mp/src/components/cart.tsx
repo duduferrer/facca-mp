@@ -32,7 +32,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setAudio(new Audio("../assets/para-tira-que-eu-vou-cagar.mp3"));
+      setAudio(new Audio("/para-tira-que-eu-vou-cagar.mp3"));
     }
   }, []);
   useEffect(() => {

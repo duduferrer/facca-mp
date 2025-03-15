@@ -28,7 +28,13 @@ const Cart = () => {
   const { data: session, update } = useSession();
   const [subtotal, setSubtotal] = useState(0);
   const [discount, setDiscount] = useState(0);
-  const [audio] = useState(new Audio("../assets/para-tira-que-eu-vou-cagar.mp3"));
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setAudio(new Audio("../assets/para-tira-que-eu-vou-cagar.mp3"));
+    }
+  }, []);
   useEffect(() => {
     session?.user.member
       ? setDiscount(Number(process.env.NEXT_PUBLIC_DISCOUNT_PERCENTAGE))

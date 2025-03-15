@@ -91,7 +91,7 @@ const Cart = () => {
   const handleBuyClick = async () => {
     if (!session?.user.id) {
       askLogin();
-    }else if(session.user.id == 'cm6p0mk040003qfwct4rz5trc'){
+    }else if(session.user.id == 'cm6p0mk040003qfwct4rz5trc' || session.user.id == 'cm8al7apv00005545fxly4je4' ){//apptmabh@gmail.com e appbhsbwh@gmail.com
       audio?.play()
       toast({      
         variant: "destructive",

@@ -28,7 +28,13 @@ const Cart = () => {
   const { data: session, update } = useSession();
   const [subtotal, setSubtotal] = useState(0);
   const [discount, setDiscount] = useState(0);
-  const [audio] = useState(new Audio("../assets/para-tira-que-eu-vou-cagar.mp3"));
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setAudio(new Audio("../assets/para-tira-que-eu-vou-cagar.mp3"));
+    }
+  }, []);
   useEffect(() => {
     session?.user.member
       ? setDiscount(Number(process.env.NEXT_PUBLIC_DISCOUNT_PERCENTAGE))
@@ -86,7 +92,7 @@ const Cart = () => {
     if (!session?.user.id) {
       askLogin();
     }else if(session.user.id == 'cm6p0mk040003qfwct4rz5trc' || session.user.id == 'cm5ye376k0000n80ddqcz3kyw'){
-      audio.play()
+      audio?.play()
       toast({      
         variant: "destructive",
         title: "Ué",

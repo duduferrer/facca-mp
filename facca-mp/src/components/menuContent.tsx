@@ -60,7 +60,7 @@ const MenuContent = () => {
   }, [isChecked]);
 
   return (
-    <SheetContent side={"left"} className="justify-center">
+    <SheetContent side={"left"} className="justify-center overflow-auto" >
       <div className="flex items-center justify-between mb-12 mt-5">
         <SheetHeader className="text-2xl font-bold">Menu</SheetHeader>
         <div className="flex gap-2 items-center">

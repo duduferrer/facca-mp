@@ -4,6 +4,7 @@ import Products from "../../components/productsList";
 import SearchBar from "@/components/searchBar";
 import { useEffect, useMemo, useState } from "react";
 import { Product } from "@prisma/client";
+import { useToast } from "@/hooks/use-toast";
 
 
 type Props = {
@@ -18,9 +19,12 @@ export default function HomeClient({products, children, categoryName}: Props) {
   const filteredProducts = useMemo(()=>{
     return products.filter(product=> product.name.toLowerCase().includes(searchTerm.toLowerCase()));
   }, [searchTerm, products]);
+  useEffect(()=>{
+    localStorage.getItem("update")
+  },[]);
   return (
     <>
-      <div className="px-4">
+      <div className="px-4 pt-20">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <div>
             {children}

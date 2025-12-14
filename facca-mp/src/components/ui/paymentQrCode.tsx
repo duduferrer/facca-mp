@@ -32,6 +32,13 @@ const PaymentQrCode = ({
     });
   }, []);
   return (
+    Number(amount)>0?
+    <Card className="overflow-clip text-center py-3 -mt-2 mb-2">
+      <p className="text-secondary-foreground text-sm">
+        Não há valores pendentes
+      </p>
+    </Card>
+      :
     <Card className="overflow-clip text-center py-3 -mt-2 mb-2">
       <p className="text-secondary-foreground text-sm">
         Pix: {BRL.format(Number(amount))}

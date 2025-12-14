@@ -1,25 +1,17 @@
-import Categories from "../../components/categories";
-import Products from "../../components/productsList";
-import SearchBar from "@/components/searchBar";
+"use server"
+import Categories from "@/components/categories";
 import { getAllProducts } from "../utils/db/getProducts";
+import HomeClient from "./homeClient";
+import UpdateToast from "@/components/updateToast";
 
-export const dynamic = "force-dynamic";
 export default async function Home() {
   const products = await getAllProducts();
   return (
     <>
-      <div className="px-4">
-        <SearchBar />
-        <div>
-          <Categories />
-        </div>
-        <div className="mt-6 p-3 max-w-full block">
-          <h3 className="text-center font-bold mb-2">Todos os Produtos</h3>
-          <div className="flex justify-center">
-            <Products products={products} />
-          </div>
-        </div>
-      </div>
+      <HomeClient products={products} categoryName="Produtos">
+        <Categories/>
+        <UpdateToast/>
+      </HomeClient>
     </>
   );
   //TODO adicionar categoria de favoritos

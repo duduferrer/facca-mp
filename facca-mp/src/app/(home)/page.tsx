@@ -2,6 +2,7 @@
 import Categories from "@/components/categories";
 import { getAllProducts } from "../utils/db/getProducts";
 import HomeClient from "./homeClient";
+import UpdateToast from "@/components/updateToast";
 
 export default async function Home() {
   const products = await getAllProducts();
@@ -9,6 +10,7 @@ export default async function Home() {
     <>
       <HomeClient products={products} categoryName="Produtos">
         <Categories/>
+        <UpdateToast/>
       </HomeClient>
     </>
   );

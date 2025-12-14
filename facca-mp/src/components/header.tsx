@@ -19,39 +19,39 @@ const Header = () => {
   },[products])
 
   return (
-    <Card className="flex justify-between p-5 items-center">
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button size={"icon"} className="rounded" variant={"ghost"}>
-            <MenuIcon />
-          </Button>
-        </SheetTrigger>
-        <MenuContent />
-      </Sheet>
-      <Link href={"/"}>
-        <h1 className="font-black text-2xl"> FACCA </h1>
-      </Link>
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button size={"icon"} className="rounded" variant={"ghost"}>
-          <div className="">
-              {(()=>{
-                if(productQty>0 && productQty<10){
-                  return  <p className="bg-primary rounded-full justify-center w-4 text-xs absolute right-5 top-11 text-white">{productQty.toString()}</p>
-                }else if(productQty>=10){
-                  return  <p className="bg-primary rounded-full justify-center w-5 text-xs absolute right-5 top-11 text-white">9+</p>
-                }else{
-                  return  <p className="bg-primary rounded-full justify-center w-4 text-xs absolute right-5 top-11 text-white"></p>
-                }}
-              )()}
-            <ShoppingBasketIcon className="w-7"/> 
-          </div>
+      <Card className="flex justify-between p-5 items-center h-20 fixed top-0 z-50 w-full">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button size={"icon"} className="rounded" variant={"ghost"}>
+              <MenuIcon />
+            </Button>
+          </SheetTrigger>
+          <MenuContent />
+        </Sheet>
+        <Link href={"/"}>
+          <h1 className="font-black text-2xl"> FACCA </h1>
+        </Link>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button size={"icon"} className="rounded" variant={"ghost"}>
+            <div className="">
+                {(()=>{
+                  if(productQty>0 && productQty<10){
+                    return  <p className="bg-primary rounded-full justify-center w-4 text-xs absolute right-5 top-11 text-white">{productQty.toString()}</p>
+                  }else if(productQty>=10){
+                    return  <p className="bg-primary rounded-full justify-center w-5 text-xs absolute right-5 top-11 text-white">9+</p>
+                  }else{
+                    return  <p className="bg-primary rounded-full justify-center w-4 text-xs absolute right-5 top-11 text-white"></p>
+                  }}
+                )()}
+              <ShoppingBasketIcon className="w-7"/> 
+            </div>
 
-          </Button>
-        </SheetTrigger>
-        <Cart />
-      </Sheet>
-    </Card>
+            </Button>
+          </SheetTrigger>
+          <Cart />
+        </Sheet>
+      </Card>
   );
 };
 

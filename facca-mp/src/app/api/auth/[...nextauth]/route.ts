@@ -15,14 +15,14 @@ const handler = NextAuth({
     }),
   ],
   session: {
-    strategy: "jwt", // Usa JWT para sessões //------->alterada
-    maxAge: 60 * 60 * 24 * 7, // 7 dias //------->alterada
+    strategy: "jwt", // Usa JWT para sessões 
+    maxAge: 60 * 60 * 24 * 7, // 7 dias
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id; //------->alterada
-        token.role = user.role as Role; // Adiciona a role no token //------->alterada
+        token.id = user.id; 
+        token.role = user.role as Role; // Adiciona a role no token 
         token.member = user.member;
         token.balance = user.balance;
       }
@@ -30,17 +30,17 @@ const handler = NextAuth({
     },
     async session({ session, token }) {
       if (token) {
-        session.user.id = token.id as string; //------->alterada
-        session.user.role = token.role as Role; //------->alterada
+        session.user.id = token.id as string; 
+        session.user.role = token.role as Role; 
         session.user.member = token.member as boolean;
         session.user.balance = await getUserBalance(token.id)
       }
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET, // Assina o JWT //------->alterada
+  secret: process.env.NEXTAUTH_SECRET, // Assina o JWT
   jwt: {
-    secret: process.env.JWT_SECRET, // Valida o JWT //------->alterada
+    secret: process.env.JWT_SECRET, // Valida o JWT 
   },
 });
 

@@ -27,45 +27,11 @@ const BalanceManCard = ({
   const [userId, setUserId] = useState("");
   const [value, setValue] = useState(0);
   const transactionTypeText = type == "ADD" ? "Adicionar" : "Remover";
-
-  const [transactionType, setTransactionType] = useState<
-    FaccaOpType | UserOpType
-  >();
   const [observation, setObservation] = useState("");
   const { data } = useSession();
   const transactionBy = data?.user.id;
   const [isMP, setIsMP] = useState<Boolean>(false);
   const [isLoading, setLoading] = useState(false);
-
-  const [faccaProps, setFaccaProps] = useState<FaccaOperationProps>();
-  const [userProps, setUserProps] = useState<UserOperationProps>();
-
-  // const handleSetProps = () => {
-  //   if (transactionBy != undefined && balanceDialogContext == "USER") {
-  //     setTransactionType(type == "ADD" ? "REFUND" : "PAYMENT");
-  //     if (transactionType == "REFUND" || transactionType == "PAYMENT") {
-  //       setUserProps({
-  //         userId: userId,
-  //         type: transactionType,
-  //         value: value,
-  //         transactionBy: transactionBy,
-  //         observation: observation,
-  //       });
-  //     }
-  //   }
-  //   if (transactionBy != undefined && balanceDialogContext == "FACCA") {
-  //     setTransactionType(type == "ADD" ? "INCOME" : "OUTCOME");
-  //     if (transactionType == "INCOME" || transactionType == "OUTCOME") {
-  //       setFaccaProps({
-  //         type: transactionType,
-  //         value: value,
-  //         transactionBy: transactionBy,
-  //         observation: observation,
-  //         isMP: isMP,
-  //       });
-  //     }
-  //   }
-  // };
   const handleSaveButton = async () => {
     if (isLoading) return;
     setLoading(true);
@@ -197,6 +163,3 @@ const BalanceManCard = ({
 };
 
 export default BalanceManCard;
-
-// TODO OBSERVATION NOT SAVING
-// TODO PAGE NOT REFRESHING

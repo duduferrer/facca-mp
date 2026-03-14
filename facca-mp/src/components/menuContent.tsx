@@ -40,7 +40,7 @@ const MenuContent = () => {
   const [isChecked, setChecked] = useState(false);
 
   const [balance, setBalance] = useState(
-    BRL.format(Number(data?.user.balance))
+    BRL.format(Number(data?.user.balance)),
   );
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const MenuContent = () => {
   }, [isChecked]);
 
   return (
-    <SheetContent side={"left"} className="justify-center overflow-auto" >
+    <SheetContent side={"left"} className="justify-center overflow-auto">
       <div className="flex items-center justify-between mb-12 mt-5">
         <SheetHeader className="text-2xl font-bold">Menu</SheetHeader>
         <div className="flex gap-2 items-center">
@@ -129,11 +129,11 @@ const MenuContent = () => {
             <SheetClose asChild>
               <Link
                 href={
-                  "https://docs.google.com/spreadsheets/d/1nw4kLElvnScEY5bAqXZrEi9TnbGcf91-W9dO6EHeDWA/edit?gid=0#gid=0"
+                  "https://docs.google.com/spreadsheets/d/1_qWFPbSwYVTczaZXwCXFwA4WePTeNJ8x9lRDaVxqWCI/edit?gid=0#gid=0"
                 }
               >
                 <Button className="w-full mb-2" variant={"outline"}>
-                  <SheetIcon className="mr-2" /> FACCA 2025
+                  <SheetIcon className="mr-2" /> FACCA - VISUALIZAÇÃO
                 </Button>
               </Link>
             </SheetClose>

@@ -40,7 +40,7 @@ const MenuContent = () => {
   const [isChecked, setChecked] = useState(false);
 
   const [balance, setBalance] = useState(
-    BRL.format(Number(data?.user.balance))
+    BRL.format(Number(data?.user.balance)),
   );
 
   useEffect(() => {
@@ -133,7 +133,7 @@ const MenuContent = () => {
                 }
               >
                 <Button className="w-full mb-2" variant={"outline"}>
-                  <SheetIcon className="mr-2" /> FACCA 2025
+                  <SheetIcon className="mr-2" /> FACCA - VISUALIZAÇÃO
                 </Button>
               </Link>
             </SheetClose>

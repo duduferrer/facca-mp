@@ -1,16 +1,21 @@
-"use server"
+"use server";
 import Categories from "@/components/categories";
-import { getAllProducts } from "../utils/db/getProducts";
+import productsFiltered from "../utils/db/filterProducts";
 import HomeClient from "./homeClient";
 import UpdateToast from "@/components/updateToast";
 
 export default async function Home() {
-  const products = await getAllProducts();
+  const { products, hasMore } = await productsFiltered("all", 1, 30);
   return (
     <>
-      <HomeClient products={products} categoryName="Produtos">
-        <Categories/>
-        <UpdateToast/>
+      <HomeClient
+        products={products}
+        initialHasMore={hasMore}
+        categoryName="Produtos"
+        category="all"
+      >
+        <Categories />
+        <UpdateToast />
       </HomeClient>
     </>
   );

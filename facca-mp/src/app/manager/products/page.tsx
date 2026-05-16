@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 const ProductManager = async () => {
   const products = await getAllProducts();
   return (
-    <div>
+    <div className="mt-20">
       <ProductManagerTable products={products} />
     </div>
   );

@@ -22,11 +22,13 @@ const productsFiltered = async (
 
   // Quando há busca, usa $queryRaw com unaccent para ignorar acentuação e case
   if (search) {
-    // Normaliza o termo no JS também: remove acentos e converte para minúsculo
-    // Assim funciona mesmo que o unaccent do PG não seja aplicado ao padrão
+    // Normaliza o termo no JS: NFD separa letra base + marca de acento (U+0300-U+036F)
+    // Filtra por charCode para evitar regex com flag /u (incompatível com ES5 no build)
     const normalizedSearch = search
       .normalize("NFD")
-      .replace(/\p{Diacritic}/gu, "")
+      .split("")
+      .filter((c) => c.charCodeAt(0) < 0x0300 || c.charCodeAt(0) > 0x036f)
+      .join("")
       .toLowerCase();
     const searchPattern = `%${normalizedSearch}%`;
 

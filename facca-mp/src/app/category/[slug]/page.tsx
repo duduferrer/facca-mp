@@ -1,6 +1,4 @@
-import SearchBar from "../../../components/searchBar";
 import Categories from "../../../components/categories";
-import Products from "@/components/productsList";
 import productsFiltered from "@/app/utils/db/filterProducts";
 import CategoryType from "../../utils/enumCategories";
 import { db } from "@/lib/prisma";
@@ -13,16 +11,20 @@ interface CategoriesPageProps {
 }
 
 const CategoriesPage = async ({ params: { slug } }: CategoriesPageProps) => {
-  const category = await db.category.findFirst({
-    where: {
-      slug: slug,
-    },
-  });
-  const products = await productsFiltered(slug)
+  const [category, { products, hasMore }] = await Promise.all([
+    db.category.findFirst({ where: { slug } }),
+    productsFiltered(slug, 1, 30),
+  ]);
+
   return (
     <>
-      <HomeClient products={products} categoryName={category?.name||"Produtos"}>
-        <Categories/>
+      <HomeClient
+        products={products}
+        initialHasMore={hasMore}
+        categoryName={category?.name || "Produtos"}
+        category={slug}
+      >
+        <Categories />
       </HomeClient>
     </>
   );

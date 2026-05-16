@@ -19,6 +19,6 @@ export const getProductByID = async (id: string) => {
 };
 
 export async function getAllProducts() {
-  const products = await productsFiltered("all");
+  const { products } = await productsFiltered("all");
   return products;
 }
